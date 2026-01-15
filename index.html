@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPrint Solutions | Professional Computer Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Hind:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-white: #ffffff;
+            --bg-gray: #f9fafb;
+            --border-color: #e5e7eb;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', 'Hind', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Language Toggle Button */
+        .lang-btn {
+            background: var(--bg-gray);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        #serviceSearch {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid var(--border-color);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #serviceSearch:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-results {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .status-available { color: #059669; background: #ecfdf5; padding: 10px; border-radius: 8px; }
+        .status-unavailable { color: #dc2626; background: #fef2f2; padding: 10px; border-radius: 8px; }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 5%;
+            text-align: center;
+            background: linear-gradient(to bottom, #f8fafc, #ffffff);
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { color: var(--text-light); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+
+        /* WhatsApp Button (Floating & Fixed) */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            z-index: 9999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 50px 5%;
+        }
+
+        .service-card {
+            padding: 30px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-gray);
+            padding: 50px 5%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .whatsapp-float { bottom: 20px; right: 20px; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" id="siteLogo">TechPrint Solutions</div>
+        <div class="nav-controls">
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <i class="fas fa-language"></i>
+                <span id="langLabel">Aa/अ</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 id="heroTitle">Your One-Stop Digital Shop</h1>
+        <p id="heroDesc">Professional design, rapid printing, and expert coding services tailored for your needs.</p>
+        
+        <div class="search-container">
+            <input type="text" id="serviceSearch" placeholder="Search for a service (e.g. Card Printing)..." onkeyup="handleSearch()">
+            <div id="searchResult" class="search-results"></div>
+        </div>
+    </section>
+
+    <div class="services-grid" id="mainServices">
+        </div>
+
+    <section style="padding: 50px 5%; text-align: center;">
+        <h2 id="allServicesTitle">Our Full Catalog</h2>
+        <div id="fullServiceList" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px;">
+            </div>
+    </section>
+
+    <a href="https://wa.me/918874249334?text=Hi" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span id="waText">Chat with Owner</span>
+    </a>
+
+    <footer>
+        <p id="footerText">© 2024 TechPrint Solutions. All rights reserved.</p>
+        <div class="footer-links">
+            <span>Email: info@techprint.com</span> | 
+            <span>Phone: +91 8874249334</span>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. LANGUAGE DATA ---
+        let currentLang = 'en';
+        const translations = {
+            en: {
+                logo: "TechPrint Solutions",
+                heroTitle: "Professional Digital Services",
+                heroDesc: "Expert solutions for Card Design, Govt Forms, and Programming.",
+                searchPlaceholder: "Search 100+ services...",
+                waText: "Chat with Owner",
+                allServicesTitle: "Everything We Offer",
+                available: "✅ Service Available in our Shop!",
+                unavailable: "❌ Sorry, No results found for this service.",
+                footer: "© 2024 TechPrint Solutions. All rights reserved."
+            },
+            hi: {
+                logo: "टेकप्रिंट सॉल्यूशंस",
+                heroTitle: "प्रोफेशनल डिजिटल सेवाएं",
+                heroDesc: "कार्ड डिजाइन, सरकारी फॉर्म और प्रोग्रामिंग के लिए विशेषज्ञ समाधान।",
+                searchPlaceholder: "100+ सेवाओं में खोजें...",
+                waText: "मालिक से बात करें",
+                allServicesTitle: "हमारी सभी सेवाएं",
+                available: "✅ यह सेवा हमारी दुकान में उपलब्ध है!",
+                unavailable: "❌ क्षमा करें, इस सेवा के लिए कोई परिणाम नहीं मिला।",
+                footer: "© 2024 टेकप्रिंट सॉल्यूशंस। सभी अधिकार सुरक्षित।"
+            }
+        };
+
+        // --- 2. SERVICE DATABASE (100+ items) ---
+        const services = [
+            "Card Printing", "Visiting Cards", "Wedding Cards", "Sarkari Result", "PAN Card Apply", 
+            "Aadhar Print", "Voter ID", "Ration Card", "Passport Apply", "Income Certificate",
+            "Caste Certificate", "Domicile Certificate", "Online Form Submission", "UP Police Form", 
+            "SSC Form", "Railway Form", "Banking Form", "Resume Making", "CV Design", "Bio-Data",
+            "C++ Coding", "Python Projects", "Web Development", "HTML CSS Work", "Java Programming",
+            "Logo Design", "Banner Design", "Poster Making", "Flex Printing", "Book Binding",
+            "Lamination", "Photocopy", "Color Printout", "B&W Printout", "Scan to PDF",
+            "PDF Editing", "Data Entry", "Excel Sheet Work", "PowerPoint Slides", "School Projects",
+            "College Assignments", "Typing Hindi", "Typing English", "Translation Work",
+            "Software Installation", "Windows Formatting", "Antivirus Sale", "Laptop Repairing",
+            "PC Assembly", "Mouse Keyboard Sale", "Pen Drive Sale", "Mobile Recharging",
+            "Electricity Bill Pay", "Insurance Payment", "Flight Booking", "Train Ticket",
+            "Bus Ticket", "Hotel Booking", "PVC Card Print", "ID Card Design", "Menu Card Design",
+            "Invitation Cards", "Birthday Posters", "Social Media Posts", "Thumbnail Design",
+            "Video Editing", "Photo Editing", "Passport Size Photo", "Old Photo Restoration",
+            "Digital Signature", "GST Registration", "ITR Filing", "Tally Work", "Account Management",
+            "Bulk SMS Service", "Email Marketing", "Google Maps Listing", "Domain Registration",
+            "Hosting Setup", "WordPress Site", "E-commerce Shop", "App Design", "UI UX Design",
+            "QR Code Generation", "Barcoding Service", "Label Printing", "Envelop Printing",
+            "Letterhead Design", "Stamping Service", "Digital Marketing", "SEO Services",
+            "Computer Classes", "Tally Course", "CCC Preparation", "Typing Classes",
+            "Urgent Print", "Spiral Binding", "Hardcover Binding", "Magazines Printing",
+            "Newspaper Ad Booking", "Affidavit Typing", "Rent Agreement", "Legal Typing"
+        ];
+
+        // --- 3. CORE FUNCTIONS ---
+
+        function init() {
+            renderServices();
+            renderFullList();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.getElementById('siteLogo').innerText = translations[currentLang].logo;
+            document.getElementById('heroTitle').innerText = translations[currentLang].heroTitle;
+            document.getElementById('heroDesc').innerText = translations[currentLang].heroDesc;
+            document.getElementById('serviceSearch').placeholder = translations[currentLang].searchPlaceholder;
+            document.getElementById('waText').innerText = translations[currentLang].waText;
+            document.getElementById('allServicesTitle').innerText = translations[currentLang].allServicesTitle;
+            document.getElementById('footerText').innerText = translations[currentLang].footer;
+            
+            // Re-render to update dynamic parts
+            handleSearch(); 
+        }
+
+        function renderServices() {
+            const container = document.getElementById('mainServices');
+            const topServices = [
+                { name: "Card Designing", icon: "fa-address-card" },
+                { name: "Form Submission", icon: "fa-file-signature" },
+                { name: "Code Projects", icon: "fa-code" },
+                { name: "Sarkari Result", icon: "fa-graduation-cap" }
+            ];
+
+            container.innerHTML = topServices.map(s => `
+                <div class="service-card">
+                    <i class="fas ${s.icon}"></i>
+                    <h3>${s.name}</h3>
+                    <p>High quality work with fast turnaround time.</p>
+                </div>
+            `).join('');
+        }
+
+        function renderFullList() {
+            const container = document.getElementById('fullServiceList');
+            container.innerHTML = services.map(s => `
+                <span style="background:#eee; padding:5px 12px; border-radius:15px; font-size:0.85rem; color:#555;">${s}</span>
+            `).join('');
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('serviceSearch').value.toLowerCase();
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (query.length < 2) {
+                resultDiv.innerHTML = "";
+                return;
+            }
+
+            const found = services.some(s => s.toLowerCase().includes(query));
+
+            if (found) {
+                resultDiv.innerHTML = `<div class="status-available">${translations[currentLang].available}</div>`;
+            } else {
+                resultDiv.innerHTML = `<div class="status-unavailable">${translations[currentLang].unavailable}</div>`;
+            }
+        }
+
+        window.onload = init;
+    </script>
+
+</body></html>
